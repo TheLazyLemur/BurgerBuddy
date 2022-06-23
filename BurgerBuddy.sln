@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BurgerBuddy", "BurgerBuddy\BurgerBuddy.csproj", "{EFCF17D3-050B-4111-9BA3-769DF262AF85}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BurgerBuddyOrderSim", "BurgerBuddyOrderSim\BurgerBuddyOrderSim.csproj", "{839B5C58-5BA5-495E-8F9E-77687FA6A148}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EFCF17D3-050B-4111-9BA3-769DF262AF85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFCF17D3-050B-4111-9BA3-769DF262AF85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFCF17D3-050B-4111-9BA3-769DF262AF85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFCF17D3-050B-4111-9BA3-769DF262AF85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{839B5C58-5BA5-495E-8F9E-77687FA6A148}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{839B5C58-5BA5-495E-8F9E-77687FA6A148}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{839B5C58-5BA5-495E-8F9E-77687FA6A148}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{839B5C58-5BA5-495E-8F9E-77687FA6A148}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
