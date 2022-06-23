@@ -11,6 +11,7 @@ public interface IOrderRepository
     Task<IEnumerable<Order>> Get(int orderStatus);
     Task Update(long id, int status);
     Task<IEnumerable<Order>> GetForDay(DateTime orderOrderTime);
+    Task<IEnumerable<Order>> GetForDayAndMealType(DateTime orderOrderTime, int orderItem);
 }
 
 public class OrderRepository : IOrderRepository
@@ -56,6 +57,26 @@ public class OrderRepository : IOrderRepository
         var result = await connection.QueryAsync<dynamic>(
             "SELECT * FROM order_table WHERE DATE(date_time) = DATE(@dateTime,'-0 day');",
             new { dateTime }
+        );
+        
+        return result.ToList().Select(it => new Order
+        {
+            Id = it.id,
+            OrderItem = it.order_item is OrderItem ? (OrderItem)it.order_item : OrderItem.Burger,
+            OrderStatus = it.order_status is OrderStatus ? (OrderStatus)it.order_status : OrderStatus.Accepted,
+            OrderTime = it.date_time,
+            OrderId = it.order_id,
+            OrderOrigin = it.order_origin is OrderOrigin ? (OrderOrigin)it.order_origin : OrderOrigin.Pos
+        });
+    }
+    
+    public async Task<IEnumerable<Order>> GetForDayAndMealType(DateTime dateTime, int orderItem)
+    {
+        using IDbConnection connection = new SQLiteConnection(_connectionString);
+        
+        var result = await connection.QueryAsync<dynamic>(
+            "SELECT * FROM order_table WHERE DATE(date_time) = DATE(@dateTime,'-0 day') AND order_item = @orderItem;",
+            new { dateTime, orderItem }
         );
         
         return result.ToList().Select(it => new Order

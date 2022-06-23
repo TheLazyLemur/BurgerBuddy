@@ -22,12 +22,18 @@ public class OrderService : IOrderService
     
     public Task<Order> Insert(Order order)
     {
-        Console.WriteLine(order.OrderTime.Hour);
         if (order.OrderTime.Hour >= 17)
             throw new Exception("Order time should be less than 5 pm");
         
         lock (LockObject)
         {
+            if (order.OrderItem == OrderItem.SmileyMeal)
+            {
+                var smileyMeals = _orderRepository.GetForDayAndMealType(order.OrderTime, (int)OrderItem.SmileyMeal).Result.ToList();
+                if(smileyMeals.Count >= 50)
+                    throw new Exception("Only 50 smiley meals can be ordered for a day");
+            }
+            
             if (order.OrderOrigin == OrderOrigin.MrD)
             {
                 var latest = _orderRepository.GetForDay(order.OrderTime).Result.ToList().Where(o => o.OrderId >= 10000).ToList();
